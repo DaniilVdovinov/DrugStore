@@ -1,6 +1,6 @@
-package parsers;
+package ru.itis.drugstore.parsers;
 
-import models.Item;
+import ru.itis.drugstore.models.Item;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,6 +9,8 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FarmlendParser implements Parser {
 
@@ -30,7 +32,14 @@ public class FarmlendParser implements Parser {
         for(Element element : elements){
             Element info = element.getElementsByClass("pi-content").first();
             String name = info.getElementsByClass("pi-title").text();
-            Double price = Double.parseDouble(info.getElementsByClass("pi-current").text().replaceAll("[\\D]", ""));
+            Pattern p = Pattern.compile("(\\d+,?\\d+)");
+            Matcher matcher = p.matcher(info.getElementsByClass("pi-current").text());
+            Double price;
+            if(matcher.find()) {
+                price = Double.parseDouble(matcher.group(1).replace(",","."));
+            }else{
+                price = 0.0;
+            }
             String href = "https://farmlend.ru" + element.getElementsByTag("a").attr("href");
             String img = "https://farmlend.ru" + element.getElementsByTag("img").attr("data-src");
             list.add(new Item(name, price, href, img));

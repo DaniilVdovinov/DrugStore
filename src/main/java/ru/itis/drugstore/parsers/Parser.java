@@ -1,6 +1,6 @@
-package parsers;
+package ru.itis.drugstore.parsers;
 
-import models.Item;
+import ru.itis.drugstore.models.Item;
 import java.util.List;
 
 public interface Parser {
