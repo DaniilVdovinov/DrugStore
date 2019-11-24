@@ -1,3 +1,5 @@
+<#import 'includes/controls.ftl' as controls>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -22,21 +24,13 @@
     <h1 class="h1_project">
         РЕГИСТРАЦИЯ
     </h1>
-    <div class="form__group">
-        <input class="form__input" name="firstName" placeholder="Имя" type="text">
-    </div>
-    <div class="form__group">
-        <input class="form__input" name="lastName" placeholder="Фамилия" type="text">
-    </div>
-    <div class="form__group">
-        <input class="form__input" name="email" placeholder="Электронная почта" type="email">
-    </div>
-    <div class="form__group">
-        <input class="form__input" type="password" name="password" placeholder="Пароль">
-    </div>
+    <@controls.input name="firstName" placeholder="Имя" type="text"/>
+    <@controls.input name="lastName" placeholder="Фамилия" type="text"/>
+    <@controls.input name="email" placeholder="Электронная почта" type="email"/>
+    <@controls.input name="password" placeholder="Пароль" type="password"/>
     <div class="text-center">
-        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button class="form_button">ВОЙТИ</button>
+        <@controls.csrf token="${ _csrf.token }"/>
+        <@controls.button label="ВОЙТИ"/>
     </div>
     <script src="../static/js/registration.js"></script>
 

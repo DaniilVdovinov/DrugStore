@@ -1,3 +1,5 @@
+<#import 'includes/controls.ftl' as controls>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -23,19 +25,16 @@
     <#if error??>
         <h4 class="error_msg">Неправильный логин или пароль</h4>
     </#if>
-    <div class="form__group">
-        <input class="form__input" name="email" placeholder="Логин" type="email" required autofocus>
-    </div>
-    <div class="form__group">
-        <input class="form__input" type="password" name="password" placeholder="Пароль" required>
-    </div>
+    <@controls.input name="email" placeholder="Логин" type="email" is_required=true is_autofocus=true/>
+    <@controls.input name="password" placeholder="Пароль" type="password" is_required=true/>
     <div class="text-center">
-        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button class="form_button">ВОЙТИ</button>
+        <@controls.csrf token="${ _csrf.token }"/>
+        <@controls.button label="ВОЙТИ"/>
+    </div>
 </form>
 <form action="/registration" method="get" class="form-signin">
-    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-    <button class="form_button">РЕГИСТРАЦИЯ</button>
+    <@controls.csrf token="${ _csrf.token }"/>
+    <@controls.button label="РЕГИСТРАЦИЯ"/>
 </form>
 </div>
 
