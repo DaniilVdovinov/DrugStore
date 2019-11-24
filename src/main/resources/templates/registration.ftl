@@ -1,3 +1,5 @@
+<#import 'includes/controls.ftl' as controls>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -17,65 +19,20 @@
 
 <form action="/registration" method="post" class="form-signin">
     <a href="/home">
-        <img class="nav-img" style="width: 100%" src='https://s8.hostingkartinok.com/uploads/images/2019/06/df320380ecdc2f42f71085655399e267.png' alt='Logo.png' />
+        <img class="nav-img" style="width: 100%" src='../static/img/logo.png' alt='Logo.png' />
     </a>
-    <h1 class="h1_project" style="color: #d5423b; text-align: center; margin: 25px;">
+    <h1 class="h1_project">
         РЕГИСТРАЦИЯ
     </h1>
-    <div class="form__group">
-        <input class="form__input" name="firstName" placeholder="Имя" type="text">
+    <@controls.input name="firstName" placeholder="Имя" type="text"/>
+    <@controls.input name="lastName" placeholder="Фамилия" type="text"/>
+    <@controls.input name="email" placeholder="Электронная почта" type="email"/>
+    <@controls.input name="password" placeholder="Пароль" type="password"/>
+    <div class="text-center">
+        <@controls.csrf token="${ _csrf.token }"/>
+        <@controls.button label="ВОЙТИ"/>
     </div>
-    <div class="form__group">
-        <input class="form__input" name="lastName" placeholder="Фамилия" type="text">
-    </div>
-    <div class="form__group">
-        <input class="form__input" name="email" placeholder="Электронная почта" type="email">
-    </div>
-    <div class="form__group">
-        <input class="form__input" type="password" name="password" placeholder="Пароль">
-    </div>
-    <div style="text-align:center;">
-        <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button class="form_button" style="color: white">ВОЙТИ</button>
-    </div>
-    <script>
-        function showError(container, errorMessage) {
-            container.className = 'error';
-            var msgElem = document.createElement('span');
-            msgElem.className = "error-message";
-            msgElem.innerHTML = errorMessage;
-            container.appendChild(msgElem);
-        }
-        function resetError(container) {
-            container.className = '';
-            if (container.lastChild.className == "error-message") {
-                container.removeChild(container.lastChild);
-            }
-        }
-        function validate(form) {
-            var elems = form.elements;
-            resetError(elems.firstName.parentNode);
-            if (!elems.firstName.value) {
-                showError(elems.firstName.parentNode, ' Укажите Ваше имя.');
-                return false;
-            }
-            resetError(elems.lastName.parentNode);
-            if (!elems.lastName.value) {
-                showError(elems.lastName.parentNode, ' Укажите Вашу фамилию.');
-                return false;
-            }
-            resetError(elems.email.parentNode);
-            if (!elems.email.value) {
-                showError(elems.email.parentNode, ' Укажите электронную почту.');
-                return false;
-            }
-            resetError(elems.password.parentNode);
-            if (!elems.password.value) {
-                showError(elems.password.parentNode, ' Укажите пароль.');
-                return false;
-            }
-        }
-    </script>
+    <script src="../static/js/registration.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

@@ -7,29 +7,18 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
-
-<#--<script>-->
-<#--    function show(id) {-->
-<#--        elem = document.getElementById(id);-->
-<#--        state = elem.style.display;-->
-<#--        if (state === 'none') elem.style.display = '';-->
-<#--    }-->
-<#--</script>-->
-
 <body>
 <nav class="navigation" style="background-color: #ffffff;">
     <a href="/home">
-        <img class="nav-img" src='https://s8.hostingkartinok.com/uploads/images/2019/06/df320380ecdc2f42f71085655399e267.png' alt='Logo.png' />
+        <img class="nav-img" src='../static/img/logo.png' alt='Logo.png' />
     </a>
     <div class="login-out">
         <form action="/logout" method="post">
             <input type="hidden" name="_csrf" value="${_csrf.token}" />
-            <input type="submit" class="btn btn-danger btn-lg" value="Sign Out"/>
+            <input type="submit" class="btn btn-info btn-lg" value="Выйти"/>
         </form>
     </div>
 </nav>
-
-<#--<a href="#" id="btn-up" title="Вернуться к началу" class="topbutton" style="display: none;">Наверх</a>-->
 
 <div class="container m-5">
     <h3 class="display-4 m-3">Имя: ${firstName}</h3>
@@ -43,8 +32,7 @@
         <#list items as item>
             <div class="product-item">
                 <div class="row" style="margin: 0 0 20px 0;">
-                    <div class="col-3" style="padding: 0 0 0 80px;"><img src="${item.img}"
-                                                                         style="width: 100px; height: 100px; text-align: right">
+                    <div class="col-3" style="padding: 0 0 0 80px;"><img src="${item.img}" style="width: 100px; height: 100px; text-align: right">
                     </div>
                     <div class="col-9" style="padding:30px">
                         <h3>${item.name}</h3>

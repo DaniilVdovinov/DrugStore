@@ -12,17 +12,17 @@
 <nav class="navigation">
     <a href="/home">
         <img class="nav-img"
-             src='https://s8.hostingkartinok.com/uploads/images/2019/06/df320380ecdc2f42f71085655399e267.png'
+             src='../static/img/logo.png'
              alt='Logo.png'/>
     </a>
     <div class="login-out" style="right: 70px !important; top: 50px !important;">
         <form action="/logout" method="post" style="display: inline; float: right; padding-left: 3px">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <button class="btn btn-danger btn-lg" type="submit">Sign Out</button>
+            <button class="btn btn-info btn-lg" type="submit">Выйти</button>
         </form>
         <form action="/profile" method="get" style="display: inline; float: right; padding-right: 3px">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <button class="btn btn-danger btn-lg" type="submit">Профиль</button>
+            <button class="btn btn-info btn-lg" type="submit">Профиль</button>
         </form>
     </div>
 </nav>
@@ -39,12 +39,12 @@
                            placeholder="Введите название лекарства...">
                 </div>
                 <div>
-                    <input class="btn btn-outline-danger ml-3" type="submit" value="Поиск">
+                    <input class="btn btn-outline-info ml-3" type="submit" value="Поиск">
                 </div>
 
                 <#if items??>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-danger dropdown-toggle mt-3"
+                        <button type="button" class="btn btn-info dropdown-toggle mt-3"
                                 data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
                             Цена по
@@ -83,7 +83,7 @@
                         <#--                    <div class="col-2">-->
                         <#--                        <input type="submit" aria-label="Favorite" id="${item.href}" name="${item.href}" onclick="sendHref(${item.href})" value="В избранное">-->
                         <#--                    </div>-->
-                        <hr width="700" color="#d5423b" size="2">
+                        <hr width="700" color="#38a0a6" size="2">
                     </div>
                 </div>
             </#list>
@@ -91,102 +91,8 @@
     </#if>
 </div>
 
-<style>
-    .form-button {
-        background-color: #c64d43 !important;
-        width: 120px !important;
-        height: 50px !important;
-        border-radius: 5px solid #c64d43;
-        color: white;
-    }
-
-    .btn-search {
-        float: left;
-        display: inline !important;
-        font-weight: 400;
-        margin-left: 6px !important;
-        color: #212529;
-        background-color: #e3f2fd;
-        text-align: center;
-        vertical-align: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        opacity: 50%;
-        border: 1px solid #87CEEB;
-        padding: .375rem .75rem;
-        font-size: 1rem;
-        line-height: 1.5;
-        border-radius: .25rem;
-        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
-    }
-
-    .btn-search:hover {
-        color: #000000;
-        background-color: rgba(168, 216, 255, .5);
-        border-color: #87CEEB;
-    }
-
-    .btn-search:focus {
-        box-shadow: 0 0 0 .2rem rgba(168, 216, 255, .5);
-    }
-
-    .search-container {
-        vertical-align: center;
-        margin: 30px;
-        display: inline-block;
-    }
-
-    .form-control {
-        display: inline;
-        float: left;
-        width: 547px;
-        height: calc(1.5em + .75rem + 2px);
-        padding: .375rem .75rem;
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        color: #495057;
-        background-color: #fff;
-        background-clip: padding-box;
-        border: 1px solid #ced4da;
-        border-radius: .25rem;
-        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
-    }
-</style>
-
-<script>
-    // function sender(href) {
-    //     console.log(href);
-    //     $.ajax({
-    //         type: 'post',
-    //         url: '/search/add',
-    //         data: {
-    //             href: href
-    //         }
-    //     })
-    // }
-
-    function sendHref(href) {
-        $.ajax({
-            type: 'get',
-            url: '/add?href=' + href,
-            data: {
-                href: href
-            }
-        }).done(function (data) {
-            location.reload();
-        })
-    }
-
-    function show(id) {
-        elem = document.getElementById(id);
-        state = elem.style.display;
-        if (state === 'none') elem.style.display = '';
-    }
-</script>
-
+<link rel="stylesheet" href="../static/css/home.css">
+<script src="../static/js/home.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
@@ -194,9 +100,7 @@
         type="text/javascript"></script>
 <script src="../static/js/map/Map.js"></script>
 <script src="../static/js/map/AptekaRu.js"></script>
-
 <script src="../static/js/map/Sakura.js"></script>
-
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
