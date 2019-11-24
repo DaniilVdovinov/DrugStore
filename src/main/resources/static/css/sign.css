@@ -38,8 +38,10 @@ body {
     font-size: 16px;
     width: 500px;
     height: 50px;
-    background-color: #E5E5E5;
+    background-color: #fbfbfb;
     overflow: visible;
+    border-color: #fff;
+    border-width: 1px;
     border-radius: .25rem;
 }
 
@@ -53,11 +55,18 @@ body {
 }
 
 .form_button {
-    background-color: #d5423b !important;
+    background-color: #38a0a6 !important;
     width: 340px !important;
     height: 50px !important;
     border: none !important;
     border-radius: 10px;
+    color: #fff;
+}
+
+.h1_project {
+    color: #38a0a6 !important;
+    text-align: center !important;
+    margin: 25px !important;
 }
 
 input .form_button.-block {
@@ -97,6 +106,9 @@ input .form_button.-block {
     transition: all .1s ease-in-out;
 }
 
+.error_msg {
+    color: crimson;
+}
 /* Fallback for Edge
 -------------------------------------------------- */
 @supports (-ms-ime-align: auto) {

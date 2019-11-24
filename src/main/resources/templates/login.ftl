@@ -15,13 +15,13 @@
 </div>
 <form method="post" class="form-signin">
     <a href="/home">
-        <img class="nav-img" style="width: 100%" src='https://s8.hostingkartinok.com/uploads/images/2019/06/df320380ecdc2f42f71085655399e267.png' alt='Logo.png' />
+        <img class="nav-img" style="width: 100%" src='../static/img/logo.png' alt='Logo.png' />
     </a>
-    <h1 class="h1_project" style="color: #d5423b; text-align: center; margin: 25px;">
+    <h1 class="h1_project">
         ВХОД
     </h1>
     <#if error??>
-        <h4 style="color: crimson">Неправильный логин или пароль</h4>
+        <h4 class="error_msg">Неправильный логин или пароль</h4>
     </#if>
     <div class="form__group">
         <input class="form__input" name="email" placeholder="Логин" type="email" required autofocus>
@@ -29,13 +29,13 @@
     <div class="form__group">
         <input class="form__input" type="password" name="password" placeholder="Пароль" required>
     </div>
-    <div style="text-align:center;">
+    <div class="text-center">
         <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-        <button class="form_button" style="color: white">ВОЙТИ</button>
+        <button class="form_button">ВОЙТИ</button>
 </form>
 <form action="/registration" method="get" class="form-signin">
     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-    <button class="form_button" style="color: white">РЕГИСТРАЦИЯ</button>
+    <button class="form_button">РЕГИСТРАЦИЯ</button>
 </form>
 </div>
 
