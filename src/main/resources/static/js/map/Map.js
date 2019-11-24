@@ -23,19 +23,13 @@ function init(){
         }));
     }
 
-    for(var i = 0, l = RiglaMarkers.length; i < l; i++){
-        blueCollection.add(new ymaps.Placemark(RiglaMarkers[i].geometry.coordinates,{
-            hintContent: 'Аптека Ригла'
-        }));
-    }
-
     for(var i = 0, l = SakuraMarkers.length; i < l; i++){
         greenCollection.add(new ymaps.Placemark(SakuraMarkers[i].geometry.coordinates,{
             hintContent: 'Аптека Сакура'
         }));
     }
 
-    myMap.geoObjects.add(yellowCollection).add(blueCollection).add(greenCollection);
+    myMap.geoObjects.add(yellowCollection).add(greenCollection);
 }
 
 

@@ -7,11 +7,14 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 import javax.transaction.Transactional;
 
 @Service
 @Transactional
 public class EmailServicesImpl implements EmailService {
+
     @Autowired
     private JavaMailSender javaMailSender;
 
@@ -20,15 +23,17 @@ public class EmailServicesImpl implements EmailService {
 
     @Override
     public void sendMail(String subject, String text, String email) {
-        MimeMessagePreparator messagePreparator = mimeMessage -> {
-            MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage);
-            messageHelper.setFrom(mailFrom);
-            messageHelper.setTo(email);
-            messageHelper.setSubject(subject);
-            messageHelper.setText(text, true);
-        };
-
-        javaMailSender.send(messagePreparator);
+        try {
+            MimeMessage msg = javaMailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(msg, true);
+            helper.setTo(email);
+            helper.setSubject(subject);
+            helper.setText(text, true);
+            helper.setFrom(mailFrom);
+            javaMailSender.send(msg);
+        } catch (MessagingException e){
+            throw new IllegalArgumentException(e);
+        }
     }
 
 }

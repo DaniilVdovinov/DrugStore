@@ -24,14 +24,18 @@
     <div class="login-out">
         <form action="/logout" method="post">
             <input type="hidden" name="_csrf" value="${_csrf.token}" />
-            <input type="submit" value="Sign Out"/>
+            <input type="submit" class="btn btn-danger btn-lg" value="Sign Out"/>
         </form>
     </div>
 </nav>
 
 <#--<a href="#" id="btn-up" title="Вернуться к началу" class="topbutton" style="display: none;">Наверх</a>-->
 
-<h5>${firstName} ${lastName}</h5>
+<div class="container m-5">
+    <h3 class="display-4 m-3">Имя: ${firstName}</h3>
+    <h3 class="display-4 m-3">Фамилия: ${lastName}</h3>
+    <h3 class="display-4 m-3">Email: ${email}</h3>
+</div>
 
 <div class="container">
     <#if items??>

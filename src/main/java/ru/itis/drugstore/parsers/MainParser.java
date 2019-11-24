@@ -9,7 +9,7 @@ import java.util.List;
 @Component
 public class MainParser implements Parser {
 
-    private static Parser[] parsers = {new FarmlendParser(), new AptekaRuParser(), new SakuraParser(), new ZdravCityParser()};
+    private static Parser[] parsers = {new AptekaRuParser(), new FarmlendParser(), new SakuraParser(), new ZdravCityParser()};
 
     @Override
     public List<Item> getItemsListByRequest(String request) {

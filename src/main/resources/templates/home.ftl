@@ -10,17 +10,19 @@
 
 <body onscroll="show('btn-up')">
 <nav class="navigation">
-    <img class="nav-img"
-         src='https://s8.hostingkartinok.com/uploads/images/2019/06/df320380ecdc2f42f71085655399e267.png'
-         alt='Logo.png'/>
+    <a href="/home">
+        <img class="nav-img"
+             src='https://s8.hostingkartinok.com/uploads/images/2019/06/df320380ecdc2f42f71085655399e267.png'
+             alt='Logo.png'/>
+    </a>
     <div class="login-out" style="right: 70px !important; top: 50px !important;">
         <form action="/logout" method="post" style="display: inline; float: right; padding-left: 3px">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <button class="form-button" type="submit">Sign Out</button>
+            <button class="btn btn-danger btn-lg" type="submit">Sign Out</button>
         </form>
         <form action="/profile" method="get" style="display: inline; float: right; padding-right: 3px">
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-            <button class="form-button" type="submit">Профиль</button>
+            <button class="btn btn-danger btn-lg" type="submit">Профиль</button>
         </form>
     </div>
 </nav>
@@ -31,27 +33,36 @@
             <div id="map"></div>
         </#if>
         <form action="/search" method="get">
-            <input id="name" name="name" type="text" class="form-control" placeholder="Введите название лекарства...">
-            <input class="btn-search" type="submit" value="Поиск">
+            <div class="d-flew flex-row">
+                <div>
+                    <input id="name" name="name" type="text" class="form-control col-10"
+                           placeholder="Введите название лекарства...">
+                </div>
+                <div>
+                    <input class="btn btn-outline-danger ml-3" type="submit" value="Поиск">
+                </div>
+
+                <#if items??>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-danger dropdown-toggle mt-3"
+                                data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            Цена по
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="/sort/sort">По возрастанию</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/sort/reverse">По убыванию</a>
+                        </div>
+                    </div>
+                </#if>
+            </div>
         </form>
 
-        <div class="text-left">
-            <div class="btn-group" role="group">
-                <button id="btnGroupDrop1" type="button" class="btn btn-outline-primary dropdown-toggle"
-                        data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                    Цена по
-                </button>
-                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                    <a class="dropdown-item" href="/sort/sort">По возрастанию</a>
-                    <a class="dropdown-item" href="/sort/reverse">По убыванию</a>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
-<a href="#" id="btn-up" title="Вернуться к началу" class="topbutton" style="display: none;">Наверх</a>
+<a href="#" id="btn-up" title="Вернуться к началу" class="topbutton btn btn-outline-danger" style="display: none;">Наверх</a>
 
 <#if error??>
 </#if>
@@ -59,22 +70,23 @@
     <#if items??>
         <table>
             <#list items as item>
-            <div class="product-item">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="${item.img}" id="img">
+                <div class="product-item">
+                    <div class="row">
+                        <div class="col-3">
+                            <img src="${item.img}" id="img">
+                        </div>
+                        <div class="col-9">
+                            <h3>${item.name}</h3>
+                            <span class="price1">Стоимость: ${item.price} руб.</span>
+                            <p><a href="${item.href}" target="_blank"> В аптеку</a></p>
+                        </div>
+                        <#--                    <div class="col-2">-->
+                        <#--                        <input type="submit" aria-label="Favorite" id="${item.href}" name="${item.href}" onclick="sendHref(${item.href})" value="В избранное">-->
+                        <#--                    </div>-->
+                        <hr width="700" color="#d5423b" size="2">
                     </div>
-                    <div class="col-9">
-                        <h3>${item.name}</h3>
-                        <span class="price1">Стоимость: ${item.price} руб.</span>
-                        <p><a href="${item.href}"> В аптеку</a></p>
-                    </div>
-                    <div class="col-2">
-                        <input type="submit" aria-label="Favorite" id="${item.href}" name="${item.href}" onclick="sendHref(${item.href})" value="В избранное">
-                    </div>
-                    <hr width="700" color="#000000" size="1">
                 </div>
-                </#list>
+            </#list>
         </table>
     </#if>
 </div>
@@ -175,12 +187,14 @@
     }
 </script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
 <script src="https://api-maps.yandex.ru/2.1/?apikey=f2063206-fe46-4935-9921-9abf9987ebec&lang=ru_RU"
         type="text/javascript"></script>
 <script src="../static/js/map/Map.js"></script>
 <script src="../static/js/map/AptekaRu.js"></script>
-<script src="../static/js/map/Rigla.js"></script>
+
 <script src="../static/js/map/Sakura.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

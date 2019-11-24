@@ -42,7 +42,9 @@ public class FarmlendParser implements Parser {
             }
             String href = "https://farmlend.ru" + element.getElementsByTag("a").attr("href");
             String img = "https://farmlend.ru" + element.getElementsByTag("img").attr("data-src");
-            list.add(new Item(name, price, href, img));
+            if(price != 0) {
+                list.add(new Item(name, price, href, img));
+            }
         }
         return list;
     }

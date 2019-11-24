@@ -34,12 +34,13 @@ public class ZdravCityParser implements Parser{
         }
         for(Element element : elements){
             String name = element.attr("data-name");
-            String price = element.attr("data-price");
+            Double price = Double.parseDouble(element.attr("data-price"));
             String href = element.getElementsByTag("a").get(0).attr("data-href");
             String img = "https://zdravcity.ru" + element.getElementsByTag("img").get(0).attr("src");
-
-            Item item = new Item(name.toUpperCase(), Double.parseDouble(price), href, img);
-            list.add(item);
+            if(price != 0) {
+                Item item = new Item(name.toUpperCase(), price, href, img);
+                list.add(item);
+            }
         }
 
         return list;

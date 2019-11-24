@@ -26,6 +26,7 @@ public class UserController {
         List<LikeItem> items = likeItemService.getAll(user);
         model.addAttribute("firstName", user.getFirstName());
         model.addAttribute("lastName", user.getLastName());
+        model.addAttribute("email", user.getEmail());
         model.addAttribute("items", items);
         return "profile";
     }
